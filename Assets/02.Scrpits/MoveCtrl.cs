@@ -20,6 +20,9 @@ public class MoveCtrl : MonoBehaviour
     private CharacterController cc;
     private Transform camTr;
     private int nextIdx = 1;
+
+
+    public static bool isStopped = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -37,17 +40,18 @@ public class MoveCtrl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        switch (moveType)
-        {
-            case MoveType.WAY_POINT:
-                MoveWayPoint();
-                break;
-            case MoveType.LOOK_AT:
-                MoveLookAt(1);
-                break;
-            case MoveType.GEAR_VR:
-                break;
-        }
+        if (isStopped) return;
+            switch (moveType)
+            {
+                case MoveType.WAY_POINT:
+                    MoveWayPoint();
+                    break;
+                case MoveType.LOOK_AT:
+                    MoveLookAt(1);
+                    break;
+                case MoveType.GEAR_VR:
+                    break;
+            }
     }
     void MoveWayPoint()
     {
